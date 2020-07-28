@@ -109,16 +109,7 @@ class Client
     {
         try {
            $uri='/';
-             //ADD
-          if(count($params)>0)
-           {
-                if(isset($params[0]['wallet']['is_url_wallet']) && $params[0]['wallet']['is_url_wallet']==true)
-                {
-                    $uri=$uri.'wallet/'.$params[0]['wallet']['wallet_name'];
-                    unset($params[0]);
-                    $params = array_values($params);
-                }
-           }
+          
         
             $json = [
                 'method' => strtolower($method),
