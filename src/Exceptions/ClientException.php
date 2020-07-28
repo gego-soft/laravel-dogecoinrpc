@@ -1,6 +1,6 @@
 <?php
 
-namespace Gegosoft\Bitcoin\Exceptions;
+namespace Gegosoft\Dogecoin\Exceptions;
 
 use RuntimeException;
 

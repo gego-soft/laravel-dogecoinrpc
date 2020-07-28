@@ -14,7 +14,7 @@
     verbose="true"
 >
     <testsuites>
-        <testsuite name="Laravel Bitcoin API Test Suite">
+        <testsuite name="Laravel Dogecoin API Test Suite">
             <directory>tests</directory>
         </testsuite>
     </testsuites>

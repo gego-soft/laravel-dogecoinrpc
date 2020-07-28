@@ -1,6 +1,6 @@
 <?php
 
-namespace Gegosoft\Bitcoin;
+namespace Gegosoft\Dogecoin;
 
 use GuzzleHttp\Client as GuzzleHttp;
 use GuzzleHttp\ClientInterface;
@@ -40,7 +40,7 @@ class Client
         $handlerStack = HandlerStack::create();
         $handlerStack->push(
             Middleware::mapResponse(function (ResponseInterface $response) {
-                return BitcoindResponse::createFrom($response);
+                return DogecoindResponse::createFrom($response);
             }),
             'json_response'
         );
@@ -121,7 +121,7 @@ class Client
 
             if ($response->hasError()) {
                 // throw exception on error
-                throw new Exceptions\BitcoindException($response->error());
+                throw new Exceptions\DogecoindException($response->error());
             }
 
             return $response;
@@ -130,14 +130,14 @@ class Client
                 $exception->hasResponse() &&
                 $exception->getResponse()->hasError()
             ) {
-                throw new Exceptions\BitcoindException($exception->getResponse()->error());
+                throw new Exceptions\DogecoindException($exception->getResponse()->error());
             }
 
             throw new Exceptions\ClientException(
                 $exception->getMessage(),
                 $exception->getCode()
             );
-        } catch (Exceptions\BitcoindException $exception) {
+        } catch (Exceptions\DogecoindException $exception) {
             throw $exception;
         }
     }
@@ -171,7 +171,7 @@ class Client
             function (ResponseInterface $response) use ($onFullfiled) {
                 $error = null;
                 if ($response->hasError()) {
-                    $error = new Exceptions\BitcoindException($response->error());
+                    $error = new Exceptions\DogecoindException($response->error());
                 }
 
                 if (is_callable($onFullfiled)) {
@@ -183,13 +183,13 @@ class Client
                     $exception->hasResponse() &&
                     $exception->getResponse()->hasError()
                 ) {
-                    $exception = new Exceptions\BitcoindException(
+                    $exception = new Exceptions\DogecoindException(
                         $exception->getResponse()->error()
                     );
                 }
 
                 if ($exception instanceof RequestException) {
-                    $exception = new Exceptions\BitcoindException(
+                    $exception = new Exceptions\DogecoindException(
                         $exception->getMessage(),
                         $exception->getCode()
                     );

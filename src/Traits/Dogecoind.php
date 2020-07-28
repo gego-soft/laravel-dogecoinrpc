@@ -1,6 +1,6 @@
 <?php
 
-namespace Gegosoft\Bitcoin\Traits;
+namespace Gegosoft\Dogecoin\Traits;
 
 trait Dogecoind
 {
